@@ -50,17 +50,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 					const response = await fetch("https://playground.4geeks.com/apis/fake/contact/" + contactIdToEdit, requestOptions)
 					if(response.ok){
-						try {
-							const response = await fetch("https://playground.4geeks.com/apis/fake/contact/agenda/putin_agenda")
-							const data = await response.json()
-							if( response.ok){
-								setStore( {contacts: data} )
-								const res = await response.json()
-							}
-						} catch (error) {
-							
-						}
-
+						getActions().loadSomeData()
 					}
 				} catch (error) {
 					
@@ -88,7 +78,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await response.json()
 
 					if( response.ok ){
-						setStore({ contacts: data })
+						getActions().loadSomeData()
+						return 201
 					}
 				} catch (error) {
 					

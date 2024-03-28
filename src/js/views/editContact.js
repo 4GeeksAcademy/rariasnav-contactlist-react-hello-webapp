@@ -68,7 +68,7 @@ export const EditContact = () => {
                     placeholder="Enter phone" required/>
                 </div>
                 <button className="btn btn-primary" onClick={ () => navigate("/")}>Back</button>
-                <Link to="/demo">
+                <Link to="/home">
                     <button className="btn btn-primary mx-2" onClick={ ()=> actions.editContact(contactEdit, contactIdToEdit) }>Save</button>
                 </Link>                
                 </form>

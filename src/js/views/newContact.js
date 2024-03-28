@@ -23,8 +23,8 @@ export const NewContact = () => {
     async function saveContact(e) {
         e.preventDefault()
         const result = await actions.createContact(fullName, email, agendaSlug, address, phone) 
-        if( result == 200){
-            navigate("/demo")
+        if( result == 201){
+            navigate("/home")
         }       
     }
 
@@ -51,7 +51,7 @@ export const NewContact = () => {
                         <input type="number" className="form-control" value={phone} name="phone" required onChange={ (e) => setPhone(e.target.value) }/>
                     </div>
                     <button className="btn btn-primary" onClick={ ()=> navigate("/")}>Back</button>
-                    <Link to="/demo">
+                    <Link to="/home">
                         <button className="btn btn-primary mx-2" onClick={ (e)=>saveContact(e)}>Save</button>
                     </Link>        
                     
