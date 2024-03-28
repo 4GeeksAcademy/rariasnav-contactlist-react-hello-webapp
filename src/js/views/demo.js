@@ -1,35 +1,31 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Context } from "../store/appContext";
 
 import "../../styles/demo.css";
 
 export const Demo = () => {
+	const navigate = useNavigate()
 	const { store, actions } = useContext(Context);
+
+	
 
 	return (
 		<div className="container">
+			<Link to="/newContact">
+				<button className="btn btn-primary">Create contact</button>
+			</Link>
+			
 			<ul className="list-group">
-				{store.demo.map((item, index) => {
+				{store.contacts.map((item, index) => {
 					return (
 						<li
 							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{// Conditional render example
-							// Check to see if the background is orange, if so, display the message
-							item.background === "orange" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
-							</button>
+							className="list-group-item d-flex justify-content-between">
+							{item.full_name}
+							<button className="btn btn-danger" onClick={ () => actions.deleteContact(item.id)}>del</button>
+							<button className="btn btn-primary" onClick={ ()=> navigate(`/editContact/${item.id}`)} >Edit</button>
 						</li>
 					);
 				})}
